@@ -1,8 +1,8 @@
 {
-  "name": "typescript-action",
-  "version": "0.0.0",
+  "name": "ecs-run-task-action",
+  "version": "0.0.1",
   "private": true,
-  "description": "TypeScript template action",
+  "description": "GitHub Actions to run a task on Amazon ECS",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/ohmer/ecs-run-task-action.git"
   },
   "keywords": [
     "actions",
-    "node",
-    "setup"
+    "aws",
+    "ecs"
   ],
-  "author": "",
+  "author": "Matthieu Michaud",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.6.0"
