@@ -1,11 +1,63 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: Run a task on Amazon ECS
+description: Run a task on Amazon ECS and wait for completion while fetching logs
+author: Matthieu Michaud
 inputs:
-  milliseconds: # change this
+  task-definition:
+    description: |
+      The family and revision (family:revision) or full ARN of the task definition to
+      run. If a revision isn't specified, the latest ACTIVE revision is used.
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  cluster:
+    description: |
+      The short name or full Amazon Resource Name (ARN) of the cluster to run your
+      task on. If you do not specify a cluster, the default cluster is assumed.
+    required: false
+  assign-public-ip:
+    description: Whether the task's elastic network interface receives a public IP address
+    required: false
+    default: 'false'
+  security-groups:
+    description: The IDs of the security groups associated with the task
+    required: false
+  subnets:
+    description: The IDs of the subnets associated with the task
+    required: false
+  override-container-name:
+    description: |
+      The name of the container that receives the override.
+      This parameter is required if any override is specified.
+    required: false
+  override-container-command:
+    description: |
+      The command to send to the container that overrides the default command from
+      the Docker image or the task definition.
+    required: false
+  override-container-environment:
+    description: |
+      The environment variables to send to the container. You can add new environment
+      variables, which are added to the container at launch, or you can override the
+      existing environment variables from the Docker image or the task definition.
+    required: false
+  override-container-cpu:
+    description: |
+      The number of cpu units reserved for the container, instead of the default
+      value from the task definition.
+    required: false
+  override-container-memory:
+    description: |
+      The hard limit (in MiB) of memory to present to the container, instead of the
+      default value from the task definition. If your container attempts to exceed
+      the memory specified here, the container is killed.
+    required: false
+  override-container-memory-reservation:
+    description: |
+      The soft limit (in MiB) of memory to reserve for the container, instead of the
+      default value from the task definition.
+    required: false
+  timeout:
+    description: The amount of time in seconds to wait for the task to complete.
+    required: false
+    default: '600'
 runs:
   using: 'node16'
   main: 'dist/index.js'
